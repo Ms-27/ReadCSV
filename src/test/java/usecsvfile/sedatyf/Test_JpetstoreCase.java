@@ -13,16 +13,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import junitparams.FileParameters;
 import junitparams.JUnitParamsRunner;
 import junitparams.mappers.CsvWithHeaderMapper;
 
 @RunWith(JUnitParamsRunner.class)
-public class Test_RealCase {
+public class Test_JpetstoreCase {
 
 	private static ReadCSV reader;
 	WebDriver driver;
-	static final String filePath = "src/test/resources/realcase.csv";
+	static final String filePath = "src/test/resources/realcase_jpetstore.csv";
 
 	@BeforeClass
 	// BeforeClass here is mandatory because if you don't have BeforeClass you will
@@ -49,18 +50,18 @@ public class Test_RealCase {
 	@Test
 	@FileParameters(value = filePath, mapper = CsvWithHeaderMapper.class)
 	public void test(int ID, String email, String password) throws IOException {
-		driver.get("http://demo.guru99.com/test/login.html");
-		WebElement input_email = driver.findElement(By.name("email"));
+		driver.get("https://jpetstore.cfapps.io/login");
+		WebElement input_email = driver.findElement(By.name("username"));
 		
 		input_email.sendKeys(reader.getValue("email"));
 		
-		WebElement input_password = driver.findElement(By.name("passwd"));
+		WebElement input_password = driver.findElement(By.name("password"));
 		
 		input_password.sendKeys(reader.getValue("password"));
 		reader.nextLine();
 		
-		driver.findElement(By.name("SubmitLogin")).click();
-		assertEquals("Successfully Logged in...", driver.findElement(By.xpath("//h3")).getText());
+		driver.findElement(By.id("login")).click();
+		//assertEquals("Successfully Logged in...", driver.findElement(By.xpath("//h3")).getText());
 	}
-
+	
 }

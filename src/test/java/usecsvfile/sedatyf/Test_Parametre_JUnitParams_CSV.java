@@ -13,8 +13,8 @@ public class Test_Parametre_JUnitParams_CSV {
 	private static ReadCSV reader;
 	
 	@BeforeClass
-	// BeforeClass here is mandatory because if you don't have BeforeClass you will instantiate several reader and you will have only the
-	// first line of your map
+	// BeforeClass here is mandatory because if you don't have BeforeClass you will instantiate several 
+	// reader and you will have only the first line of your map
 	public static void initialize() {
 		try {
 			reader = new ReadCSV("src/test/resources/test.csv");
